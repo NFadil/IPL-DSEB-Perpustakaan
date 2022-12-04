@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Des 2022 pada 14.13
--- Versi server: 10.4.21-MariaDB
--- Versi PHP: 8.0.11
+-- Generation Time: Dec 04, 2022 at 02:58 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `anggota`
+-- Table structure for table `anggota`
 --
 
 CREATE TABLE `anggota` (
@@ -39,7 +39,7 @@ CREATE TABLE `anggota` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `buku`
+-- Table structure for table `buku`
 --
 
 CREATE TABLE `buku` (
@@ -53,7 +53,7 @@ CREATE TABLE `buku` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `login`
+-- Table structure for table `login`
 --
 
 CREATE TABLE `login` (
@@ -66,7 +66,7 @@ CREATE TABLE `login` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `peminjaman`
+-- Table structure for table `peminjaman`
 --
 
 CREATE TABLE `peminjaman` (
@@ -80,7 +80,7 @@ CREATE TABLE `peminjaman` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengembalian`
+-- Table structure for table `pengembalian`
 --
 
 CREATE TABLE `pengembalian` (
@@ -92,32 +92,49 @@ CREATE TABLE `pengembalian` (
   `tanggal_pengembalian` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `registrasi`
+--
+
+CREATE TABLE `registrasi` (
+  `id_registrasi` int(5) NOT NULL,
+  `id_buku` int(5) NOT NULL,
+  `id_user` int(5) NOT NULL,
+  `id_pustakawan` int(5) NOT NULL,
+  `judul` varchar(20) NOT NULL,
+  `nama_anggota` varchar(20) NOT NULL,
+  `jenis` varchar(20) NOT NULL,
+  `harga` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `anggota`
+-- Indexes for table `anggota`
 --
 ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id_user`),
   ADD KEY `username` (`username`);
 
 --
--- Indeks untuk tabel `buku`
+-- Indexes for table `buku`
 --
 ALTER TABLE `buku`
   ADD PRIMARY KEY (`id_buku`);
 
 --
--- Indeks untuk tabel `login`
+-- Indexes for table `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id_user`),
   ADD KEY `username` (`username`);
 
 --
--- Indeks untuk tabel `peminjaman`
+-- Indexes for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
   ADD PRIMARY KEY (`id_peminjaman`),
@@ -125,7 +142,7 @@ ALTER TABLE `peminjaman`
   ADD KEY `id_buku` (`id_buku`);
 
 --
--- Indeks untuk tabel `pengembalian`
+-- Indexes for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
   ADD PRIMARY KEY (`id_pengembalian`),
@@ -137,50 +154,66 @@ ALTER TABLE `pengembalian`
   ADD KEY `id_user_4` (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- Indexes for table `registrasi`
+--
+ALTER TABLE `registrasi`
+  ADD PRIMARY KEY (`id_registrasi`),
+  ADD KEY `id_buku` (`id_buku`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_pustakawan` (`id_pustakawan`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `anggota`
+-- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
   MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `peminjaman`
+-- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
   MODIFY `id_peminjaman` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `anggota`
+-- Constraints for table `anggota`
 --
 ALTER TABLE `anggota`
   ADD CONSTRAINT `anggota_ibfk_1` FOREIGN KEY (`username`) REFERENCES `login` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `anggota_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `peminjaman` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `buku`
+-- Constraints for table `buku`
 --
 ALTER TABLE `buku`
   ADD CONSTRAINT `buku_ibfk_1` FOREIGN KEY (`id_buku`) REFERENCES `pengembalian` (`id_buku`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `peminjaman`
+-- Constraints for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
   ADD CONSTRAINT `peminjaman_ibfk_1` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id_buku`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `peminjaman_ibfk_2` FOREIGN KEY (`id_peminjaman`) REFERENCES `pengembalian` (`id_peminjaman`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `pengembalian`
+-- Constraints for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
   ADD CONSTRAINT `pengembalian_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `anggota` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `registrasi`
+--
+ALTER TABLE `registrasi`
+  ADD CONSTRAINT `registrasi_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `anggota` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `registrasi_ibfk_2` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id_buku`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
