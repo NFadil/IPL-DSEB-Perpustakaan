@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2022 at 02:58 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Dec 04, 2022 at 03:12 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -95,6 +95,20 @@ CREATE TABLE `pengembalian` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pustakawan`
+--
+
+CREATE TABLE `pustakawan` (
+  `id_pustakawan` int(5) NOT NULL,
+  `username` varchar(11) NOT NULL,
+  `nama_pustakawan` varchar(20) NOT NULL,
+  `jenis_kelamin` varchar(20) NOT NULL,
+  `tanggal_lahir` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `registrasi`
 --
 
@@ -152,6 +166,13 @@ ALTER TABLE `pengembalian`
   ADD KEY `id_peminjaman` (`id_peminjaman`),
   ADD KEY `id_user_2` (`id_user`),
   ADD KEY `id_user_4` (`id_user`);
+
+--
+-- Indexes for table `pustakawan`
+--
+ALTER TABLE `pustakawan`
+  ADD PRIMARY KEY (`id_pustakawan`),
+  ADD KEY `username` (`username`);
 
 --
 -- Indexes for table `registrasi`
