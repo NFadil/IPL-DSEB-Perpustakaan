@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Des 2022 pada 10.24
--- Versi server: 10.4.19-MariaDB
--- Versi PHP: 7.3.28
+-- Waktu pembuatan: 04 Des 2022 pada 14.13
+-- Versi server: 10.4.21-MariaDB
+-- Versi PHP: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -77,6 +77,21 @@ CREATE TABLE `peminjaman` (
   `waktu_peminjaman` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pengembalian`
+--
+
+CREATE TABLE `pengembalian` (
+  `id_pengembalian` int(5) NOT NULL,
+  `id_peminjaman` int(5) NOT NULL,
+  `id_buku` int(5) NOT NULL,
+  `id_user` int(5) NOT NULL,
+  `judul` varchar(20) NOT NULL,
+  `tanggal_pengembalian` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
@@ -110,6 +125,18 @@ ALTER TABLE `peminjaman`
   ADD KEY `id_buku` (`id_buku`);
 
 --
+-- Indeks untuk tabel `pengembalian`
+--
+ALTER TABLE `pengembalian`
+  ADD PRIMARY KEY (`id_pengembalian`),
+  ADD UNIQUE KEY `id_user_3` (`id_user`),
+  ADD KEY `id_buku` (`id_buku`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_peminjaman` (`id_peminjaman`),
+  ADD KEY `id_user_2` (`id_user`),
+  ADD KEY `id_user_4` (`id_user`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -137,10 +164,23 @@ ALTER TABLE `anggota`
   ADD CONSTRAINT `anggota_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `peminjaman` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Ketidakleluasaan untuk tabel `buku`
+--
+ALTER TABLE `buku`
+  ADD CONSTRAINT `buku_ibfk_1` FOREIGN KEY (`id_buku`) REFERENCES `pengembalian` (`id_buku`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Ketidakleluasaan untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  ADD CONSTRAINT `peminjaman_ibfk_1` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id_buku`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `peminjaman_ibfk_1` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id_buku`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `peminjaman_ibfk_2` FOREIGN KEY (`id_peminjaman`) REFERENCES `pengembalian` (`id_peminjaman`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `pengembalian`
+--
+ALTER TABLE `pengembalian`
+  ADD CONSTRAINT `pengembalian_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `anggota` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
