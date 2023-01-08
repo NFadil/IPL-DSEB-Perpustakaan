@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="29b87db5-4698-454a-a16e-a3009b8e2041">
+	<property name="ireport.zoom" value="1.610510000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[select * from anggota]]>
+	</queryString>
+	<field name="id_user" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="username" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_anggota" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jenis_kelamin" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="alamat_anggota" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_hp" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" mode="Transparent" x="153" y="15" width="290" height="33" forecolor="#000000" backcolor="#006666" uuid="1a853422-9f62-43bd-9b1b-b58fedc05298"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[LAPORAN ANGGOTA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement mode="Opaque" x="0" y="35" width="555" height="1" forecolor="#FFFFFF" backcolor="#006666" uuid="c989b255-897b-4e36-b245-20dafae45314"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="19" width="92" height="15" forecolor="#FFFFFF" backcolor="#006666" uuid="163f4790-6d64-47ab-9442-8fa8c1fdc3ca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT" size="12"/>
+				</textElement>
+				<text><![CDATA[ID Anggota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="92" y="19" width="92" height="15" forecolor="#FFFFFF" backcolor="#006666" uuid="d12862b1-d06e-49ad-b4e1-f4692476ed6b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT" size="12"/>
+				</textElement>
+				<text><![CDATA[Username]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="184" y="19" width="92" height="15" forecolor="#FFFFFF" backcolor="#006666" uuid="9f8f4de0-4d50-445d-9238-8e2d84089308"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT" size="12"/>
+				</textElement>
+				<text><![CDATA[Nama Aggota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="19" width="92" height="15" forecolor="#FFFFFF" backcolor="#006666" uuid="310241e9-b550-4bf9-9df5-3ced4bdbb8f7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT" size="12"/>
+				</textElement>
+				<text><![CDATA[Jenis Kelamin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="368" y="19" width="92" height="15" forecolor="#FFFFFF" backcolor="#006666" uuid="146bbc4a-8076-44ce-b0a8-aabccc4f00f5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT" size="12"/>
+				</textElement>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="460" y="19" width="92" height="15" forecolor="#FFFFFF" backcolor="#006666" uuid="a268d622-a289-4789-851a-825e1b07faf4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT" size="12"/>
+				</textElement>
+				<text><![CDATA[N HP]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement mode="Transparent" x="0" y="15" width="555" height="1" forecolor="#000000" backcolor="#006666" uuid="6f5edd7f-a897-4905-a2e5-c887e28e1900"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement mode="Transparent" x="0" y="0" width="92" height="15" forecolor="#000000" backcolor="#006666" uuid="a51dc96b-d9d4-41ed-abc5-e48903fdb0b3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_user}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="92" y="0" width="92" height="15" forecolor="#000000" backcolor="#006666" uuid="3e7b4cb3-e4da-453b-8f34-843f587386f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="184" y="0" width="92" height="15" forecolor="#000000" backcolor="#006666" uuid="eb5d8ea0-f509-4752-8b40-c7e9da1ce2a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_anggota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="276" y="0" width="92" height="15" forecolor="#000000" backcolor="#006666" uuid="4ebb6242-df19-42de-a561-e5750468aff9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jenis_kelamin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="368" y="0" width="92" height="15" forecolor="#000000" backcolor="#006666" uuid="a2c3702c-781d-48c4-8d13-24b7c08f3b78"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{alamat_anggota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="460" y="0" width="92" height="15" forecolor="#000000" backcolor="#006666" uuid="9e25316f-ba77-43f1-860c-f0e6453221bd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_hp}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement mode="Transparent" x="0" y="3" width="555" height="1" forecolor="#000000" uuid="bd73f026-d662-49ae-83ba-9fbdabe5d695"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="78c8de96-30c5-4fd9-ad84-f0391c3e2d51"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="7cf8b6e6-4427-4f91-b54a-c273188da173"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="182b6f9b-7def-4e2e-b569-bdf0650d72be"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
