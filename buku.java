@@ -6,13 +6,17 @@ package sisteminformasiperpus;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Fadil
@@ -110,6 +114,7 @@ public class buku extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         kembali_btn = new javax.swing.JButton();
+        cetakbtn = new javax.swing.JButton();
         txtjenisbuku = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -222,6 +227,18 @@ public class buku extends javax.swing.JFrame {
             }
         });
 
+        cetakbtn.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
+        cetakbtn.setForeground(new java.awt.Color(0, 102, 102));
+        cetakbtn.setIcon(new javax.swing.ImageIcon("D:\\Kuliah semester 5\\IPL\\TUBES\\inbox-solid.png")); // NOI18N
+        cetakbtn.setText("CETAK");
+        cetakbtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cetakbtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        cetakbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cetakbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -231,17 +248,18 @@ public class buku extends javax.swing.JFrame {
                 .addComponent(kembali_btn)
                 .addGap(335, 335, 335)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cetakbtn))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cetakbtn)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(kembali_btn)
-                        .addGap(13, 13, 13)))
+                        .addComponent(jLabel1)))
                 .addContainerGap())
         );
 
@@ -435,6 +453,18 @@ public class buku extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_hapustxtActionPerformed
 
+    private void cetakbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakbtnActionPerformed
+        // TODO add your handling code here:
+        try{
+            File namaFile = new File("src/sisteminformasiperpus/report/laporanbuku.jasper");
+            JasperPrint js = JasperFillManager.fillReport(namaFile.getPath(),null,con);
+            JasperViewer.viewReport(js,false);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this,"Data Tidak Berhasil Mencetak","Kesalahan", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_cetakbtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -473,6 +503,7 @@ public class buku extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton caribtn;
     private javax.swing.JTextField caritxt;
+    private javax.swing.JButton cetakbtn;
     private javax.swing.JButton hapustxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
