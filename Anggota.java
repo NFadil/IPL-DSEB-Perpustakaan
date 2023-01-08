@@ -6,6 +6,7 @@ package sisteminformasiperpus;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Fadil
@@ -106,7 +110,6 @@ public class Anggota extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        tambahanggotabtn = new javax.swing.JButton();
         updateanggotabtn = new javax.swing.JButton();
         hapusanggotatxt = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -118,6 +121,7 @@ public class Anggota extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         kembali_btn1 = new javax.swing.JButton();
+        cetakbtn = new javax.swing.JButton();
         txtnohp = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
 
@@ -159,16 +163,6 @@ public class Anggota extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Jenis Kelamin");
-
-        tambahanggotabtn.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
-        tambahanggotabtn.setForeground(new java.awt.Color(0, 102, 102));
-        tambahanggotabtn.setIcon(new javax.swing.ImageIcon("D:\\Kuliah semester 5\\IPL\\TUBES\\plus-circle-solid.png")); // NOI18N
-        tambahanggotabtn.setText("Tambah");
-        tambahanggotabtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tambahanggotabtnActionPerformed(evt);
-            }
-        });
 
         updateanggotabtn.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 12)); // NOI18N
         updateanggotabtn.setForeground(new java.awt.Color(0, 102, 102));
@@ -239,28 +233,42 @@ public class Anggota extends javax.swing.JFrame {
             }
         });
 
+        cetakbtn.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
+        cetakbtn.setForeground(new java.awt.Color(0, 102, 102));
+        cetakbtn.setIcon(new javax.swing.ImageIcon("D:\\Kuliah semester 5\\IPL\\TUBES\\inbox-solid.png")); // NOI18N
+        cetakbtn.setText("CETAK");
+        cetakbtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cetakbtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        cetakbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cetakbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addComponent(kembali_btn1)
-                .addGap(353, 353, 353)
+                .addGap(357, 357, 357)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cetakbtn)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cetakbtn, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(kembali_btn1)
-                        .addGap(19, 19, 19))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(kembali_btn1)
+                            .addComponent(jLabel1))
+                        .addContainerGap())))
         );
 
         jLabel7.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
@@ -296,12 +304,9 @@ public class Anggota extends javax.swing.JFrame {
                         .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tambahanggotabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(26, 26, 26)
-                                .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(jLabel3)
+                        .addGap(26, 26, 26)
+                        .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(231, 231, 231)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,14 +366,9 @@ public class Anggota extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(tambahanggotabtn)
-                        .addGap(39, 39, 39))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(updateanggotabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hapusanggotatxt))
-                        .addContainerGap())))
+                    .addComponent(updateanggotabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hapusanggotatxt))
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -458,26 +458,6 @@ public class Anggota extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tb_anggotaMouseClicked
 
-    private void tambahanggotabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahanggotabtnActionPerformed
-        // TODO add your handling code here:
-        
-        try{
-            String sql = "INSERT INTO anggota VALUES  ('"+txtid.getText()+"','"+txtusername.getText()+"','"+txtnama.getText()+"','"+txtjeniskelamin.getSelectedItem()+"','"+txtalamat.getText()+"','"+txtnohp.getText()+"')";
-            Koneksi DB = new Koneksi();
-            DB.config();
-            con = DB.con;
-            stat = DB.stm;
-            java.sql.PreparedStatement state = con.prepareStatement(sql);
-            state.execute();
-            JOptionPane.showMessageDialog(null,"Data Berhasil Disimpan");
-            data();
-            Kosongkan();
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this,"Data Tidak Berhasil Disimpan");
-
-        }
-    }//GEN-LAST:event_tambahanggotabtnActionPerformed
-
     private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidActionPerformed
@@ -487,6 +467,18 @@ public class Anggota extends javax.swing.JFrame {
         new Dashboard().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_kembali_btn1ActionPerformed
+
+    private void cetakbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakbtnActionPerformed
+        // TODO add your handling code here:
+        try{
+            File namaFile = new File("src/sisteminformasiperpus/report/laporananggota.jasper");
+            JasperPrint js = JasperFillManager.fillReport(namaFile.getPath(),null,con);
+            JasperViewer.viewReport(js,false);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this,"Data Tidak Berhasil Mencetak","Kesalahan", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_cetakbtnActionPerformed
    
     /**
      * @param args the command line arguments
@@ -526,6 +518,7 @@ public class Anggota extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton caribtn;
     private javax.swing.JTextField caritxt;
+    private javax.swing.JButton cetakbtn;
     private javax.swing.JButton hapusanggotatxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -539,7 +532,6 @@ public class Anggota extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kembali_btn1;
-    private javax.swing.JButton tambahanggotabtn;
     private javax.swing.JTable tb_anggota;
     private javax.swing.JTextField txtalamat;
     private javax.swing.JTextField txtid;
