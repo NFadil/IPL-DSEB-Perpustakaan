@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5246d6be-bcb5-4f85-abde-0d42c20d67b9">
+	<property name="ireport.zoom" value="3.1384283767210053"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="298"/>
+	<queryString language="SQL">
+		<![CDATA[select *from buku]]>
+	</queryString>
+	<field name="id_buku" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="judul" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jenis_buku" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pengarang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="175" y="18" width="218" height="46" uuid="3c32286e-566f-448c-b2d7-1a077794cf94"/>
+				<textElement>
+					<font fontName="Tw Cen MT Condensed" size="40"/>
+				</textElement>
+				<text><![CDATA[LAPORAN BUKU]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="138" height="20" forecolor="#FFFFFF" backcolor="#006666" uuid="68fec589-6613-4a5e-9168-dd48639f8aab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="12"/>
+				</textElement>
+				<text><![CDATA[ID Buku]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#FFFFFF" backcolor="#006666" uuid="b9061205-90fc-4735-80f6-c9458a3f4844"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="12"/>
+				</textElement>
+				<text><![CDATA[Judul]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#FFFFFF" backcolor="#006666" uuid="fc36b130-f64a-41a0-ab3f-033139b6d3c3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="12"/>
+				</textElement>
+				<text><![CDATA[Jenis Buku]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#FFFFFF" backcolor="#006666" uuid="24f5f0b0-39c2-49e2-ac16-47677b7434d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="12"/>
+				</textElement>
+				<text><![CDATA[Pengarang]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="138" height="20" uuid="052bf726-d67c-45e6-ab47-19767b85197d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_buku}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="138" height="20" uuid="ecfe599d-5985-4ef3-a0f4-92a29c1c99cc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{judul}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="138" height="20" uuid="8e3c84d5-738c-4476-a48a-a6c5e323e309"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jenis_buku}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="138" height="20" uuid="4941fc27-f6c8-4371-bb4f-e03919836daf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pengarang}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="19" width="552" height="1" uuid="39661487-53ac-4836-b21f-425d4c6261b3"/>
+			</line>
+			<line>
+				<reportElement x="414" y="0" width="1" height="19" uuid="dbfe6d22-aff0-4faa-a277-b8c927a2ec61"/>
+			</line>
+			<line>
+				<reportElement x="552" y="0" width="1" height="19" uuid="22f9607b-03e7-4256-bf2e-271dc93ace48"/>
+			</line>
+			<line>
+				<reportElement x="276" y="0" width="1" height="19" uuid="8d54e902-b755-4ccc-8388-76a8f95f3729"/>
+			</line>
+			<line>
+				<reportElement x="138" y="0" width="1" height="19" uuid="8679e937-684e-4c61-94f5-da733d5304f3"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="19" uuid="0e4df277-38f1-474e-97eb-39d14d13d21a"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
